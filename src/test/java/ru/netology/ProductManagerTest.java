@@ -19,6 +19,7 @@ public class ProductManagerTest {
     private Product pro3 = new Smartphone(03,5000,"Nokia","Taivan");
     private Product pro4 = new Smartphone(04,6000,"Samsung","China");
 
+
     @BeforeEach
     public void setUp() {
         manager.add(pro1);
@@ -64,7 +65,26 @@ public class ProductManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void shouldEmptyRepository(){
+        manager.removeById(1);
+        manager.removeById(2);
+        manager.removeById(3);
+        manager.removeById(4);
+        Product[] actual = repository.findAll();
+        Product[] expected = {};
+        Assertions.assertArrayEquals(expected,actual);
+    }
 
+    @Test
+    public void shouldOneElements(){
+        manager.removeById(1);
+        manager.removeById(2);
+        manager.removeById(3);
+        Product[] actual = repository.findAll();
+        Product[] expected = {pro4};
+        Assertions.assertArrayEquals(expected,actual);
+    }
 }
 
 
