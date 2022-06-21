@@ -17,6 +17,15 @@ public class Product {
     protected String name;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 
 }
 

@@ -7,15 +7,15 @@ public class ProductManager {
 
     private Repository repository;
 
-    public ProductManager(Repository repository){
+    public ProductManager(Repository repository) {
         this.repository = repository;
     }
 
-    public void add(Product product){
+    public void add(Product product) {
         repository.save(product);
     }
 
-    public void removeById(int id){
+    public void removeById(int id) {
         repository.removeById(id);
     }
 
@@ -35,5 +35,9 @@ public class ProductManager {
         }
         return result;
     }
+
+
 }
+
+
 
