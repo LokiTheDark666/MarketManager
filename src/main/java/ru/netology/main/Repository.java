@@ -1,6 +1,8 @@
 package ru.netology.main;
 
 
+import ru.netology.manager.NotFoundException;
+
 public class Repository {
 
     private Product[] products = new Product[0];
@@ -12,13 +14,26 @@ public class Repository {
         }
         tmp[tmp.length - 1] = product;
         products = tmp;
-   }
+    }
 
     public Product[] findAll() {
         return products;
     }
 
+
+    public Product findById(int id) {
+        for (Product product : findAll()) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
     public void removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("Несуществующий id: " + id);
+        }
         Product[] tmp = new Product[products.length - 1];
         int index = 0;
         for (Product product : products) {
@@ -26,8 +41,10 @@ public class Repository {
                 tmp[index] = product;
                 index++;
             }
-        }
-        products = tmp;
-    }
 
+            products = tmp;
+        }
+
+
+    }
 }
